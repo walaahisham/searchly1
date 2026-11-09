@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Searchly | Discover More</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/12343/12343229.png">
+</head>
+<body>
+
+    <div class="announcement">
+        <p>✨ Discover your next favorite product with Searchly</p>
+    </div>
+
+    <header class="header">
+        <div class="container navbar">
+            <a href="#" class="logo">Search<span>ly.</span></a>
+
+            <nav class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#categories">Categories</a>
+                <a href="#offers">Offers</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+
+                <button class="icon-btn" id="wishlistBtn" aria-label="Open wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="counter" id="wishlistCount">0</span>
+                </button>
+
+                <button class="icon-btn" id="cartBtn" aria-label="Open cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="counter" id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+<main>
+
+    <div class="page-layout">
+
+        <!-- Categories Sidebar -->
+        <aside class="category-sidebar" id="categories">
+
+            <div class="sidebar-heading">
+                <h3>Categories</h3>
+                <i class="fa-solid fa-sliders"></i>
+            </div>
+
+            <div id="categoryList" class="category-list">
+                <p class="muted">Loading categories...</p>
+            </div>
+
+        </aside>
+
+        <!-- Main Page Content -->
+        <div class="page-content">
+
+            <!-- Hero Section -->
+            <section class="hero" id="home">
+
+                <div class="hero-content">
+                    <span class="eyebrow">THE SMART WAY TO SHOP</span>
+
+                    <h1>Discover products<br>you'll <span>love.</span></h1>
+
+                    <p>
+                        Explore thousands of products, find your favorites
+                        and enjoy a smarter shopping experience.
+                    </p>
+
+                    <a href="#products" class="primary-btn">
+                        Explore Collection
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="hero-decoration">
+                    <div class="hero-circle">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                    </div>
+
+                    <span class="floating-tag tag-one">New Arrivals ✨</span>
+                    <span class="floating-tag tag-two">Best Deals 🔥</span>
+                </div>
+
+            </section>
+
+
+            <!-- Offers Section -->
+            <section class="offer-section" id="offers">
+
+                <div class="offer-content">
+                    <span>LIMITED TIME OFFER</span>
+
+                    <h2>Find your next favorite.</h2>
+
+                    <p>Discover amazing products at great prices.</p>
+
+                    <a href="#products" class="offer-btn">
+                        Shop Now
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="offer-icon">
+                    <i class="fa-solid fa-gift"></i>
+                </div>
+
+            </section>
+
+
+            <!-- Products Section -->
+            <section class="shop-section" id="products">
+
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">OUR COLLECTION</span>
+                        <h2>Explore Products</h2>
+                        <p>Find exactly what you're looking for.</p>
+                    </div>
+                </div>
+
+                <!-- Search and Sort -->
+                <div class="search-panel">
+
+                    <form id="searchForm" class="search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Search for products..."
+                        >
+
+                        <button type="submit">Search</button>
+                    </form>
+
+                    <select id="sortFilter" class="sort-select">
+                        <option value="default">Sort By</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="rating">Top Rated</option>
+                    </select>
+
+                </div>
+
+
+                <!-- Products -->
+                <div class="shop-products">
+
+                    <div class="products-toolbar">
+                        <p id="productsCount">Loading products...</p>
+
+                        <span>
+                            <i class="fa-solid fa-border-all"></i>
+                            All Products
+                        </span>
+                    </div>
+
+                    <div id="loading" class="message">
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+                        <p>Loading products...</p>
+                    </div>
+
+                    <div id="error" class="message error hidden">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <p>Something went wrong.</p>
+                        <button id="retryBtn" class="primary-btn">
+                            Try Again
+                        </button>
+                    </div>
+
+                    <div id="empty" class="message hidden">
+                        <i class="fa-solid fa-box-open"></i>
+                        <p>No products found.</p>
+                    </div>
+
+                    <div id="productsContainer" class="products-grid"></div>
+
+                    <div id="pagination" class="pagination"></div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Product Details -->
+            <section id="productDetails" class="details-section hidden">
+
+                <button id="backBtn" class="back-btn">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    Back to products
+                </button>
+
+                <div id="detailsContent"></div>
+
+            </section>
+
+
+            <!-- Newsletter -->
+            <section class="newsletter">
+
+                <div>
+                    <span class="eyebrow">STAY UPDATED</span>
+                    <h2>Don't miss what's new.</h2>
+                    <p>Stay in the loop with our latest collections.</p>
+                </div>
+
+                <a href="#products" class="primary-btn">Explore Now</a>
+
+            </section>
+
+        </div>
+
+    </div>
+
+</main>
+    <footer class="footer">
+        <div class="container footer-content">
+            <a href="#" class="logo">Search<span>ly.</span></a>
+            <p>Discover more. Shop smarter.</p>
+            <p class="copyright">© 2026 Searchly. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Cart Drawer -->
+    <div class="overlay" id="cartOverlay"></div>
+    <aside class="drawer" id="cartDrawer">
+        <div class="drawer-header">
+            <h2><i class="fa-solid fa-bag-shopping"></i> Your Cart</h2>
+            <button class="close-btn" id="closeCart"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div id="cartItems" class="drawer-items"></div>
+        <div class="drawer-footer">
+            <div class="total-row">
+                <span>Total</span>
+                <strong id="cartTotal">$0.00</strong>
+            </div>
+            <button id="checkoutBtn" class="primary-btn full-btn">Checkout</button>
+        </div>
+    </aside>
+
+    <!-- Wishlist Drawer -->
+    <div class="overlay" id="wishlistOverlay"></div>
+    <aside class="drawer" id="wishlistDrawer">
+        <div class="drawer-header">
+            <h2><i class="fa-regular fa-heart"></i> My Wishlist</h2>
+            <button class="close-btn" id="closeWishlist"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div id="wishlistItems" class="drawer-items"></div>
+    </aside>
+
+    <!-- Quick View Modal -->
+    <div class="modal-overlay" id="quickViewOverlay">
+        <div class="quick-modal">
+            <button class="close-btn modal-close" id="closeQuickView">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="quickViewContent"></div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
